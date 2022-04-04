@@ -1,0 +1,20 @@
+.grid-container {
+	display: inline-grid;
+	grid-template-columns: auto auto auto auto;
+	grid-template-rows: auto;
+}
+
+.grid-item {
+	padding: 10px;
+	border-style: solid;
+}
+
+.keybox {
+	display: none;
+}
+
+textarea {
+	resize: none;
+	color: var(--color-15);
+	background-color: var(--color-0);
+}

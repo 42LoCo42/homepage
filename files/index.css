@@ -1,0 +1,49 @@
+@import url("/colors.css");
+
+body {
+	background-color: var(--color-0);
+	color: var(--color-15);
+	display: block !important;
+}
+
+pre {
+	font-size: 14px;
+}
+
+a {
+	color: var(--color-4);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--color-12);
+	text-decoration: var(--color-12) dotted underline;
+}
+
+a:active {
+	color: var(--color-2);
+	text-decoration: var(--color-2) underline;
+}
+
+button, input {
+	color: var(--color-0);
+	background-color: var(--color-14);
+	border: 2px solid var(--color-14);
+	border-radius: 10px;
+	vertical-align: middle;
+}
+
+button span {
+	font-weight: bold;
+	display: block;
+}
+
+button:hover, input:hover {
+	color: var(--color-1);
+	border: 2px solid var(--color-1);
+}
+
+.badge {
+	height: 31px;
+	vertical-align: middle;
+}

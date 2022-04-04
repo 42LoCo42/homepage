@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+
+# read -r d m y <<< "$(date +"%d %m %Y")"
+# age=$((y - 2002))
+# if ((m < 11 || (m == 11 && d < 4))); then
+# 	((age--))
+# fi
+
+cat << EOF
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8"/>
+		<title>ZHS Homepage</title>
+		<link rel="stylesheet" href="/index.css"/>
+	</head>
+	<body style="display: none">
+		<div style="display: grid; grid-template-columns: 1fr 1fr;">
+			<div>
+				<h1>About me</h1>
+				<p>
+					I am Leon Schumacher, a 19 year old undergraduate student at the
+					<a href="https://www.hochschule-stralsund.de" target="_blank">Hochschule Stralsund</a>,<br/>
+					where I study IT-Security and Mobile Systems.
+				</p><p>
+					In my free time, I enjoy programming in a variety of languages, but usually backend/OS-level stuff.<br/>
+					I use Linux as my main OS, but sometimes I play with different UNIX kernels like Plan 9 or BSD.<br/>
+				</p><p>
+					I am autistic, but do not view myself as medically disabled.<br/>
+					Instead, I advocate for the implementation of the <a href="https://en.wikipedia.org/wiki/Social_model_of_disability" target="_blank">social model of disability</a>.<br/>
+					I am also aromantic and asexual and greatly value LGBTQIA+/GSRM rights.
+				</p>
+			</div>
+			<div>
+				<h1>Available Services</h1>
+				<form method="get">
+EOF
+find . \
+	-mindepth 2 -maxdepth 2 \
+	-name 'index.*' \
+| sed 's|^\./||; s|/[^/]*$||' \
+| uniq \
+| while read -r dir; do
+	echo "<button formaction=\"$dir\">"
+	[ -f "$dir/favicon.ico" ] && echo "<img alt=\"$dir\" src=\"$dir/favicon.ico\"/>"
+	echo "<span>$dir</span></button>"
+done
+
+neofetch="$(
+	sed "
+		s|UPTIME|$(uptime -p | tail -c+4)|;
+		s|MEMORY|$(free -h | awk 'NR == 2 {print $3 "B / " $2 "B"}')|;
+	" "$DOCUMENT_ROOT/../caches/neofetch"
+)"
+right_column_start="$(grep -n '>@<' <<< "$neofetch" | cut -d: -f1)"
+
+cat << EOF
+				</form>
+			</div>
+		</div>
+		<hr/>
+
+		<h1>Sysinfo</h1>
+		<div style="display: grid; grid-template-columns: auto 1fr 1fr;">
+			<div style='grid-column: 1 / 3;'>
+				<h3>Neofetch</h3>
+			</div>
+			<div style='grid-column: 3;'>
+				<h3>Packages</h3>
+			</div>
+			<div>
+				<pre>
+$(head -n"$((right_column_start - 1))" <<< "$neofetch" | sed 's|$|    |')
+				</pre>
+			</div>
+			<div>
+				<pre>
+$(tail -n+"$right_column_start" <<< "$neofetch")
+				</pre>
+			</div>
+			<div>
+				<pre>$(< "$DOCUMENT_ROOT/../caches/packages")</pre>
+				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/42LoCo42" target="_blank">Github</a></li>
+					<li><a href="https://aur.archlinux.org/packages/?K=42LoCo42&amp;SeB=m" target="_blank">AUR packages</a></li>
+					<li>
+						<a href="https://keys.openpgp.org/vks/v1/by-fingerprint/C743EE077172986F860FC0FE2F6FE1420970404C">
+							My PGP key (Leon Schumacher &lt;leonsch@protonmail.com&gt;)
+						</a>
+					</li>
+					<li><a href="https://kikuo.jp/" target="_blank">Good music</a></li>
+				</ul>
+			</div>
+		</div>
+		<hr/>
+EOF
+#		<div style="display: grid; grid-template-columns: auto auto;">
+#			<div>
+#					<iframe
+#						style="
+#							border: none;
+#							overflow: hidden;
+#							width: 301px;
+#							height: 286px;
+#						"
+#						src="https://github-readme-stats.vercel.app/api/top-langs/?username=42LoCo42&amp;theme=gruvbox"
+#					></iframe>
+#			</div>
+#		</div>
+#		<hr/>
+cat << EOF
+		<div style="display: grid; grid-template-columns: auto auto;">
+			<div>
+				<a href="https://validator.w3.org/nu/?doc=https%3A%2F%2F42loco42.duckdns.org%2F" target="_blank">
+					<img class="badge" alt="HTML5 Valid" src="/assets/html5-validator-badge.png"/>
+				</a>
+				<img class="badge" alt="100% cookie free!" src="/assets/nocookie.png"/>
+				<img class="badge" alt="AroAce flag" src="/assets/flag.png"/>
+				<img class="badge" alt="This is a safe space" src="/assets/safespace.png"/>
+				This is a safe space for everyone!
+			</div>
+			<div>
+				2022-03-28 - Now running on lighttpd!
+			</div>
+		</div>
+	</body>
+</html>
+EOF

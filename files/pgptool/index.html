@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Leon's PGP-Tool</title>
+		<link rel="stylesheet" href="/index.css"/>
+		<link rel="stylesheet" href="index.css"/>
+		<script type="text/javascript" src="openpgp.min.js"></script>
+		<script type="text/javascript" src="index.js"></script>
+	</head>
+	<body style="display: none">
+		<h1>Leon's PGP-Tool <img alt="PGP-Icon" src="favicon.ico"/></h1>
+		<h5><a href="/">Zurück</a></h5>
+		<div class="grid-container">
+			<div class="grid-item">
+				<h1>Schlüsselverwaltung</h1>
+				Achtung: jedes Schlüsselpaar nur in einer Sitzung benutzen!<br/>
+				Dieses Tool ist KEIN ERSATZ für eine permanente PGP-Installation, z.B. GnuPG<br/>
+
+				<h3>Privater Schlüssel</h3>
+				<div id="privKeyStatus">Nicht erzeugt</div>
+				<textarea id="privKeyBox" class="keybox" rows="15" cols="61" readonly=""></textarea>
+
+				<h3>Öffentlicher Schlüssel</h3>
+				<div id="pubKeyStatus">Nicht erzeugt</div>
+				<textarea id="pubKeyBox" class="keybox" rows="14" cols="61" readonly=""></textarea>
+				<br/>
+				<button onclick="genkeys()">Schlüsselpaar erzeugen</button>
+				<hr/>
+
+				<h3>Öffentlicher Schlüssel der Gegenstelle</h3>
+				<div id="partnerKeyFP">Fingerabdruck: noch nicht berechnet</div>
+				<textarea id="partnerKeyBox" rows="14" cols="61"></textarea><br/>
+				<button onclick="genPartnerKeyFP()">Fingerabdruck berechnen</button>
+			</div>
+			<div class="grid-item">
+				<h1>Senden</h1>
+				<h3>Klartext</h3>
+				<textarea id="sendCleartextBox" rows="14" cols="61"></textarea><br/>
+				<button id="encryptBtn" onclick="encrypt()">Verschlüsseln</button>
+				<h3>Verschlüsselte Nachricht</h3>
+				<textarea id="sendEncryptedBox" rows="14" cols="61" readonly=""></textarea>
+			</div>
+			<div class="grid-item">
+				<h1>Empfangen</h1>
+				<h3>Verschlüsselte Nachricht</h3>
+				<textarea id="recvEncryptedBox" rows="14" cols="61"></textarea><br/>
+				<button id="decryptBtn" onclick="decrypt()">Entschlüsseln</button>
+				<h3>Originaltext</h3>
+				<textarea id="recvCleartextBox" rows="14" cols="61" readonly=""></textarea>
+			</div>
+			<div class="grid-item">
+				<h1>Fehlerbericht</h1>
+				<textarea id="errors" rows="37" cols="60" readonly=""></textarea>
+			</div>
+		</div>
+	</body>
+</html>
