@@ -32,6 +32,7 @@ echo "</pre><hr>"
 
 if ((is_upload)); then
 	echo "POST body:<br><pre>"
+	# tee "/tmp/out" | html_encode
 	html_encode
 else
 	echo "POST options:<br><pre>"
