@@ -30,7 +30,7 @@ EOF
 if [ -z "$username" ]; then
 	cat << EOF
 		<h1>Login</h1>
-		<h5><a href="/">Back</a></h5>
+		<h5><a href="..">Back</a></h5>
 		<h3>JS is not required for authentication, there are alternatives!</h3>
 		Try logging in with <code>user:password</code> or <code>foo:bar</code>
 		<hr/>
@@ -43,7 +43,7 @@ EOF
 elif try_login "$username" "$password"; then
 	cat << EOF
 		<h1>Logged in as $username</h1>
-		<h5><a href="/">Back</a></h5>
+		<h5><a href="..">Back</a></h5>
 		<form method="post">
 			<h3>Actions:</h3>
 			<input $(is_admin || echo 'type="hidden"') name="username" value="$username"/>$(is_admin && echo "<br/>")
