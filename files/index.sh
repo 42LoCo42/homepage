@@ -61,12 +61,15 @@ cat << EOF
 		<hr/>
 
 		<h1>Sysinfo</h1>
-		<div style="display: grid; grid-template-columns: auto 1fr 1fr;">
+		<div style="display: grid; grid-template-columns: auto 1fr 1fr 1fr;">
 			<div style='grid-column: 1 / 3;'>
 				<h3>Neofetch</h3>
 			</div>
 			<div style='grid-column: 3;'>
 				<h3>Packages</h3>
+			</div>
+			<div>
+				<h3>Git-Log</h3>
 			</div>
 			<div>
 				<pre>
@@ -92,6 +95,9 @@ $(tail -n+"$right_column_start" <<< "$neofetch")
 					<li><a href="https://kikuo.jp/" target="_blank">Good music</a></li>
 				</ul>
 			</div>
+			<pre>
+$(< "$DOCUMENT_ROOT/../caches/gitlog")
+			</pre>
 		</div>
 		<hr/>
 EOF

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+cd "$(realpath "$(dirname "${BASH_SOURCE[0]}")")" || exit 1
+
+fmt="$(sed -z 's|\n| |g' << EOF
+<a target="_blank" href="https://github.com/42LoCo42/homepage/commit/%H"><span class="bold blue">%h</span></a>
+- <span class="bold green">(%ar)</span>
+%s
+- <span class="white">%an</span>
+<span class="bold yellow">%d</span>
+EOF
+)"
+
+case "$1" in
+	git) git log --oneline --graph --format="$fmt" > "caches/gitlog" ;;
+esac
