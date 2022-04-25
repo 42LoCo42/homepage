@@ -12,5 +12,16 @@ EOF
 )"
 
 case "$1" in
+	logo) neofetch -L | aha -s -n > "caches/logo" ;;
+
+	neofetch)
+		neofetch --backend off \
+		| sed '
+			s|Uptime.*|Uptime[m: UPTIME|;
+			s|Memory.*|Memory[m: MEMORY|;
+		' \
+		| aha -s -n > "caches/neofetch"
+	;;
+
 	git) git log --oneline --graph --format="$fmt" > "caches/gitlog" ;;
 esac

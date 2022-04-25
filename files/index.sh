@@ -52,7 +52,6 @@ neofetch="$(
 		s|MEMORY|$(free -h | awk 'NR == 2 {print $3 "B / " $2 "B"}')|;
 	" "$DOCUMENT_ROOT/../caches/neofetch"
 )"
-right_column_start="$(grep -n '>@<' <<< "$neofetch" | cut -d: -f1)"
 
 cat << EOF
 				</form>
@@ -71,14 +70,14 @@ cat << EOF
 			<div>
 				<h3>Git-Log</h3>
 			</div>
-			<div>
+			<div style="margin-right: 15px;">
 				<pre>
-$(head -n"$((right_column_start - 1))" <<< "$neofetch" | sed 's|$|    |')
+$(< "$DOCUMENT_ROOT/../caches/logo")
 				</pre>
 			</div>
 			<div>
 				<pre>
-$(tail -n+"$right_column_start" <<< "$neofetch")
+$neofetch
 				</pre>
 			</div>
 			<div>
