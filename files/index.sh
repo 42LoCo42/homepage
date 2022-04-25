@@ -128,7 +128,7 @@ cat << EOF
 				This is a safe space for everyone!
 			</div>
 			<div>
-				2022-03-28 - Now running on lighttpd!
+				2022-04-25 - Migration to lighttpd complete!
 			</div>
 		</div>
 	</body>
