@@ -39,6 +39,8 @@ if [ -z "$username" ]; then
 			Password: <input type="password" name="password"/><br/>
 			<input type="submit" value="Login"/>
 		</form>
+		<hr/>
+		<h3>Or go to the <a href="stash"> secure stash</a></h3>
 EOF
 elif try_login "$username" "$password"; then
 	cat << EOF
