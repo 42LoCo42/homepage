@@ -2,4 +2,6 @@ key
 pem
 caches
 private/secure-users/admin
-files/stash
+
+**/stash/*
+!**/stash/index.sh
