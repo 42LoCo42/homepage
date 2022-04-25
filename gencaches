@@ -11,6 +11,16 @@ fmt="$(sed -z 's|\n| |g' << EOF
 EOF
 )"
 
+getsize() {
+	xbps-query -l \
+	| awk '{sub(/-[^-]+_[^_]+$/, "", $2); print $2}' \
+	| parallel xbps-query \
+	| awk '/installed_size/ {sub(/K/, "k", $2); print $2}' \
+	| paste -sd '+' \
+	| qalc -t -s 'prec 2' \
+	| awk 'NR == 3 {print $1 " " $2}'
+}
+
 case "$1" in
 	logo) neofetch -L | aha -s -n > "caches/logo" ;;
 
@@ -21,6 +31,16 @@ case "$1" in
 			s|Memory.*|Memory[m: MEMORY|;
 		' \
 		| aha -s -n > "caches/neofetch"
+	;;
+
+	pkgs) cat << EOF > "caches/packages"
+$(xbps-query -V | sed -E 's|: ([^ ]+)|: <span class="cyan">\1</span>|g')
+<span class="blue">=======================================</span>
+Total installed packages:        <span class="cyan">$(xbps-query -l | wc -l)</span>
+Manually installed packages:     <span class="cyan">$(xbps-query -m | wc -l)</span>
+Total size occupied by packages: <span class="cyan">$(getsize)</span>
+<span class="blue">=======================================</span>
+EOF
 	;;
 
 	git) git log --oneline --graph --format="$fmt" > "caches/gitlog" ;;

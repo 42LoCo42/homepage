@@ -81,7 +81,9 @@ $neofetch
 				</pre>
 			</div>
 			<div>
-				<pre>$(< "$DOCUMENT_ROOT/../caches/packages")</pre>
+				<pre>
+$(< "$DOCUMENT_ROOT/../caches/packages")
+				</pre>
 				<h3>Links</h3>
 				<ul>
 					<li><a href="https://github.com/42LoCo42" target="_blank">Github</a> (<a href="https://github.com/42LoCo42/homepage">this page</a>)</li>
