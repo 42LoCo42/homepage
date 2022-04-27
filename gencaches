@@ -4,7 +4,7 @@ cd "$(realpath "$(dirname "${BASH_SOURCE[0]}")")" || exit 1
 
 fmt="$(sed -z 's|\n| |g' << EOF
 <a target="_blank" href="https://github.com/42LoCo42/homepage/commit/%H"><span class="bold blue">%h</span></a>
-- <span class="bold green">(%ar)</span>
+- <span class="bold green">(%ai)</span>
 %s
 - <span class="white">%an</span>
 <span class="bold yellow">%d</span>
