@@ -24,7 +24,7 @@ cat << EOF
 					where I study IT-Security and Mobile Systems.
 				</p><p>
 					In my free time, I enjoy programming in a variety of languages, but usually backend/OS-level stuff.<br/>
-					I use Linux as my main OS, but sometimes I play with different UNIX kernels like Plan 9 or BSD.<br/>
+					I use Linux as my main OS, but sometimes I play with different UNIX(-like) kernels like Plan 9 or BSD.<br/>
 				</p><p>
 					I am autistic, but do not view myself as medically disabled.<br/>
 					Instead, I advocate for the implementation of the <a href="https://en.wikipedia.org/wiki/Social_model_of_disability" target="_blank">social model of disability</a>.<br/>
@@ -96,7 +96,7 @@ $(< "$DOCUMENT_ROOT/../caches/packages")
 					<li><a href="https://kikuo.jp/" target="_blank">Good music</a></li>
 				</ul>
 			</div>
-			<pre>
+			<pre style="height: 20em; overflow: scroll; border: solid 1px var(--color-7);">
 $(< "$DOCUMENT_ROOT/../caches/gitlog")
 			</pre>
 		</div>
