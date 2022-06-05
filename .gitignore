@@ -3,5 +3,7 @@ pem
 caches
 private/secure-users/admin
 
+htdigest
+
 **/stash/*
 !**/stash/index.sh
