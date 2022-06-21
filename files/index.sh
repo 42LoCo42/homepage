@@ -15,7 +15,7 @@ cat << EOF
 		<link rel="stylesheet" href="/index.css"/>
 	</head>
 	<body style="display: none">
-		<div style="display: grid; grid-template-columns: 1fr 1fr;">
+		<div style="display: grid; grid-template-columns: 1fr auto 1fr;">
 			<div>
 				<h1>About me</h1>
 				<p>
@@ -55,6 +55,36 @@ neofetch="$(
 
 cat << EOF
 				</form>
+			</div>
+			<div>
+				<h1>Current projects</h1>
+				<ul>
+					<li>
+						A secure communications library, as a minimalistic alternative to TLS:
+						<a href="https://github.com/42LoCo42/zeolite" target="_blank">zeolite</a>
+					</li>
+					<li>
+						Integrating zeolite into
+						<a href="https://github.com/42LoCo42/emo2" target="_blank">emo</a>
+						and
+						<a href="https://github.com/42LoCo42/chibimo" target="_blank">chibimo</a>
+					</li>
+					<li>
+						A REPL for C, with eventual support for variables and autocompletion:
+						<a href="https://github.com/42LoCo42/c-repl" target="_blank">c-repl</a>
+					</li>
+					<li>
+						A simple Scheme-like language with an interpreter written in Haskell.<br>
+						Heavily inspired by
+						<a
+							href="https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours"
+							target="_blank"
+						>
+							"Write Yourself a Scheme in 48 Hours"
+						</a>:
+						<a href="https://github.com/42LoCo42/scheme48" target="_blank">scheme48</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<hr/>
