@@ -60,6 +60,20 @@ cat << EOF
 				<h1>Current projects</h1>
 				<ul>
 					<li>
+						(PLANNED) My own programming language. Features:
+							<ul>
+								<li>Functional and imperative</li>
+								<li>Relatively low-level, just a little bit above C</li>
+								<li>No garbage collector; memory management via lifetime checks</li>
+								<li>
+									<a href="https://en.wikipedia.org/wiki/Homoiconicity" target="_blank">
+										Homoiconicity
+									</a>
+									and metaprogramming capabilities like Lisp.
+								</li>
+							</ul>
+						<a href="/foo/sprache.txt">Current list of ideas (in German)</a>
+					<li>
 						A secure communications library, as a minimalistic alternative to TLS:
 						<a href="https://github.com/42LoCo42/zeolite" target="_blank">zeolite</a>
 					</li>
@@ -67,22 +81,11 @@ cat << EOF
 						Integrating zeolite into
 						<a href="https://github.com/42LoCo42/emo2" target="_blank">emo</a>
 						and
-						<a href="https://github.com/42LoCo42/chibimo" target="_blank">chibimo</a>
+						<a href="https://github.com/42LoCo42/chibimo" target="_blank">chibimo</a> (DONE)
 					</li>
 					<li>
 						A REPL for C, with eventual support for variables and autocompletion:
 						<a href="https://github.com/42LoCo42/c-repl" target="_blank">c-repl</a>
-					</li>
-					<li>
-						A simple Scheme-like language with an interpreter written in Haskell.<br>
-						Heavily inspired by
-						<a
-							href="https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours"
-							target="_blank"
-						>
-							"Write Yourself a Scheme in 48 Hours"
-						</a>:
-						<a href="https://github.com/42LoCo42/scheme48" target="_blank">scheme48</a>
 					</li>
 				</ul>
 			</div>

@@ -1,0 +1,74 @@
+Stand: 2022-07-03 rev 1
+
+misc:
+	generiert sauberes C, fast wie handgeschrieben
+	automatische namen enthalten originalnamen + ID für lesbarkeit
+	name wrangling von namespaces etc. ist einfach zu predicten
+	kann auch abgeschaltet werden, aber unsafe
+	zum thema unsafe: man hat absolute macht, wenn man unsafe annotationen nutzt
+	sonst aber harter error bei unsafe verhalten
+	generell ist explizites verhalten pflicht, der compiler assumed nicht einfach kram
+
+defer:
+	eigentliche funktion in block wrappen
+	return geht aus dem block raus
+	alle defers im umgekehrter reihenfolge nach dem block
+	jeweils in if(deferINDEXreached) wrapped damit nicht alle triggern
+	deferINDEXreached vars werden vor dem block deklariert
+	und im block bei erreichen der defer location auf true gesetzt
+	wie in D: es gibt defers für immer, nur bei erfolg, nur bei error
+
+syntax:
+	kein unterschied zw. funktionen und konstanten (haskell style)
+	parameter mit pfeilen trennen?
+	annotationen wie java: (@Create int*)* = pointer auf dynamisch allokierte ints
+	kotlin style call mit lambda als block? vermutlich schöner als python/nim doppelpunkt
+	keine semikolons am zeilenende
+	nicht zu viel weird syntax (gegenbeispiel: rust, zig, makros in nim)
+	Lisp syntax ist cool und ideal für gute makros, aber sehr minimal
+
+funktionen:
+	echter rückgabewert ist char* auf error message
+	später vielleicht pointer auf stacktrace
+	in-lang rückgabe actually über pointer:
+		createFoo(name: const String): @Create Foo
+		wird zu
+		char* createFoo(name: const char*, __return: Foo*)
+
+memory management:
+	lifetime checker: parameter (und returnwert) sind @Create oder @Destroy
+	z.b. malloc würde ein @Create void* returnen
+	free hat @Destroy void*
+	funktionen mit calls zu @Create dingen werden geprüft:
+		wenn sie einen @Create wert irgendwo exportieren/kopieren/etc, ist der auch @Create
+		wenn sie ihn nicht derart exortieren, free inserten
+	möglichkeit für Datentyp-abhängiges free (via interface/trait?)
+	nach übergabe eines @Create wertes an einen @Destroy parameter darf der wert nicht mehr benutzt werden
+	auch noch mal rust lifetimes & borrow checker vergleichen, dort gibts gute ideen
+
+datenmodell:
+	kein traditionelles OOP
+	algebraische datentypen
+	wie haskell: typeclasses bzw interfaces, also typ-spezifische implementierungen
+	call delegation wie in D
+	potentiell objekt-spezifische implementierungen?
+	polymorphie über typen mit selben fähigkeiten (pseudo heterogene listen, haskell type hiding)
+
+datenstrukturen:
+	nicht einfach nur list, set, map etc
+	sondern mit vorgaben für laufzeit und benutzung
+	z.b.: push, delAt, getAt = pushRD struktur von krimskrams
+
+code usage:
+	welche bereiche im code werden relativ zu einer position immer oder nur manchmal ausgeführt
+	kann benutzt werden für:
+		- dead code eliminiation
+		- erkennen ob variable initialisiert wurde
+		- erkennen ob ein @Destroy call auftritt (@MaybeDestroy wenn nur manchmal)
+	code nach einem @MaybeDestroy call könnte z.b. if exists benutzen
+
+metaprogramming:
+	homoiconicity
+	makros wie in Lisp; gegenbeispiele:
+		template haskell: zu komplex
+		C preproc: text only, kein echter sprachbezug
