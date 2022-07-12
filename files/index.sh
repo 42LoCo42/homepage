@@ -72,16 +72,11 @@ cat << EOF
 									and metaprogramming capabilities like Lisp.
 								</li>
 							</ul>
-						<a href="/foo/sprache.txt">Current list of ideas (in German)</a>
+						<a href="/foo/sprache.html">Current list of ideas (in German)</a>
 					<li>
 						A secure communications library, as a minimalistic alternative to TLS:
-						<a href="https://github.com/42LoCo42/zeolite" target="_blank">zeolite</a>
-					</li>
-					<li>
-						Integrating zeolite into
-						<a href="https://github.com/42LoCo42/emo2" target="_blank">emo</a>
-						and
-						<a href="https://github.com/42LoCo42/chibimo" target="_blank">chibimo</a> (DONE)
+						<a href="https://github.com/42LoCo42/zeolite" target="_blank">zeolite</a><br>
+						Still working on a better multi-client support...
 					</li>
 					<li>
 						A REPL for C, with eventual support for variables and autocompletion:
