@@ -19,7 +19,7 @@ cat << EOF
 			<div>
 				<h1>About me</h1>
 				<p>
-					I am Leon Schumacher, a 19 year old undergraduate student at the
+					I am Eleonora Schumacher, a 19 year old undergraduate student at the
 					<a href="https://www.hochschule-stralsund.de" target="_blank">Hochschule Stralsund</a>,<br/>
 					where I study IT-Security and Mobile Systems.
 				</p><p>
@@ -29,6 +29,12 @@ cat << EOF
 					I am autistic, but do not view myself as medically disabled.<br/>
 					Instead, I advocate for the implementation of the <a href="https://en.wikipedia.org/wiki/Social_model_of_disability" target="_blank">social model of disability</a>.<br/>
 					I am also aromantic and asexual and greatly value LGBTQIA+/GSRM rights.
+				</p>
+				<p>
+					Approximately during December 2021, I have realized that I am a woman.
+					I take a lot of pride in my new identity. My pronouns are she/her.
+					Trans rights are human rights!
+					<img class="badge" alt="The trans flag" src="/assets/trans.png"/>
 				</p>
 			</div>
 			<div>
@@ -61,21 +67,22 @@ cat << EOF
 				<ul>
 					<li>
 						(PLANNED) My own programming language. Features:
-							<ul>
-								<li>Functional and imperative</li>
-								<li>Relatively low-level, just a little bit above C</li>
-								<li>No garbage collector; memory management via lifetime checks</li>
-								<li>
-									<a href="https://en.wikipedia.org/wiki/Homoiconicity" target="_blank">
-										Homoiconicity
-									</a>
-									and metaprogramming capabilities like Lisp.
-								</li>
-							</ul>
+						<ul>
+							<li>Functional and imperative</li>
+							<li>Relatively low-level, just a little bit above C</li>
+							<li>No garbage collector; memory management via lifetime checks</li>
+							<li>
+								<a href="https://en.wikipedia.org/wiki/Homoiconicity" target="_blank">
+									Homoiconicity
+								</a>
+								and metaprogramming capabilities like Lisp.
+							</li>
+						</ul>
 						<a href="/foo/sprache.html">Current list of ideas (in German)</a>
+					</li>
 					<li>
 						A secure communications library, as a minimalistic alternative to TLS:
-						<a href="https://github.com/42LoCo42/zeolite" target="_blank">zeolite</a><br>
+						<a href="https://github.com/42LoCo42/zeolite" target="_blank">zeolite</a><br/>
 						Still working on a better multi-client support...
 					</li>
 					<li>
@@ -114,7 +121,8 @@ $(< "$DOCUMENT_ROOT/../caches/packages")
 				</pre>
 				<h3>Links</h3>
 				<ul>
-					<li><a href="https://github.com/42LoCo42" target="_blank">Github</a> (<a href="https://github.com/42LoCo42/homepage">this page</a>)</li>
+					<li><a href="https://github.com/42LoCo42" target="_blank">Github</a>
+					(<a href="https://github.com/42LoCo42/homepage" target="_blank">this page</a>)</li>
 					<li><a href="https://aur.archlinux.org/packages/?K=42LoCo42&amp;SeB=m" target="_blank">AUR packages</a></li>
 					<li>
 						<a href="https://keys.openpgp.org/vks/v1/by-fingerprint/C743EE077172986F860FC0FE2F6FE1420970404C">
