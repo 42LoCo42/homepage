@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Ideenliste</title>
+		<link rel="stylesheet" href="/index.css"/>
+	</head>
+	<body>
+		<h1>Projekt: Eigene Programmiersprache</h1>
+		<h3>Namenswahl ausstehend</h3>
+		<h3>Stand: 2022-07-03, Revision 2</h3>
+		<h5><a href="..">Zur&uuml;ck</a></h5>
+		<hr>
+		<h3>Verschiedenes:</h3>
+		<ul>
+			<li>generiert sauberes C, fast wie handgeschrieben</li>
+			<li>automatische namen enthalten originalnamen + ID für lesbarkeit</li>
+			<li>name wrangling von namespaces etc. ist einfach zu predicten</li>
+			<li>kann auch abgeschaltet werden, aber unsafe</li>
+			<li>zum thema unsafe: man hat absolute macht, wenn man unsafe annotationen nutzt</li>
+			<li>sonst aber harter error bei unsafe verhalten</li>
+			<li>generell ist explizites verhalten pflicht, der compiler assumed nicht einfach kram</li>
+		</ul>
+		<h3>defer:</h3>
+		<ul>
+			<li>eigentliche Funktion in Block wrappen</li>
+			<li>return geht aus dem Block raus</li>
+			<li>alle defers im umgekehrter Reihenfolge nach dem Block</li>
+			<li>jeweils in if(deferINDEXreached) wrappen, damit nicht alle triggern</li>
+			<li>deferINDEXreached vars werden vor dem Block deklariert</li>
+			<li>und im Block bei Erreichen der defer location auf true gesetzt</li>
+			<li>wie in D: es gibt defers für immer, nur bei Erfolg, nur bei Error</li>
+		</ul>
+		<h3>Syntax:</h3>
+		<ul>
+			<li>kein Unterschied zw. Funktionen und Konstanten (Haskell-Style)</li>
+			<li>Parameter mit Pfeilen trennen?</li>
+			<li>Annotationen wie Java: (@Create int*)* = Pointer auf dynamisch allokierte ints</li>
+			<li>Kotlin-Style call mit Lambda als Block? Vermutlich schöner als Python/Nim Doppelpunkt</li>
+			<li>keine Semikolons am Zeilenende</li>
+			<li>nicht zu viel spezielle Syntax (Gegenbeispiele: Rust, Zig, Makros in Nim)</li>
+			<li>Lisp-Syntax ist cool und ideal für gute Makros, aber zu minimal</li>
+		</ul>
+		<h3>Funktionen:</h3>
+		<ul>
+			<li>echter Rückgabewert ist char* auf Fehlermeldung</li>
+			<li>später vielleicht Pointer auf Stacktrace</li>
+			<li>
+				innerhalb der Sprache: Rückgabe über Pointer:
+				<pre>
+	createFoo(name: const String): @Create Foo
+	wird zu:
+	char* createFoo(name: const char*, __return: Foo*)
+				</pre>
+			</li>
+		</ul>
+
+		<h3>Speicherverwaltung:</h3>
+		<ul>
+			<li>Lifetime Checker: Parameter (und Returnwert) sind @Create oder @Destroy</li>
+			<li>z.b. malloc würde ein @Create void* zur&uuml;ckgeben</li>
+			<li>free hat @Destroy void*</li>
+			<li>
+				Funktionen mit Calls zu @Create Dingen werden geprüft:
+				<ul>
+					<li>wenn sie einen @Create Wert irgendwo exportieren/kopieren/etc, ist der auch @Create</li>
+					<li>wenn sie ihn nicht derart exportieren, free einf&uuml;gen</li>
+				</ul>
+			</li>
+			<li>Möglichkeit für Datentyp-abhängiges free (via interface/trait?)</li>
+			<li>nach Übergabe eines @Create Wertes an einen @Destroy Parameter darf der Wert nicht mehr benutzt werden</li>
+			<li>auch noch mal Rust Lifetimes &amp; borrow checker vergleichen, dort gibts gute Ideen</li>
+		</ul>
+
+		<h3>Datenmodell:</h3>
+		<ul>
+			<li>kein traditionelles OOP</li>
+			<li>algebraische Datentypen</li>
+			<li>wie Haskell: typeclasses bzw. interfaces, also typ-spezifische Implementierungen</li>
+			<li>call delegation wie in D</li>
+			<li>potentiell objekt-spezifische Implementierungen?</li>
+			<li>Polymorphie über Typen mit selben Fähigkeiten (pseudo heterogene Listen, Haskell type hiding)</li>
+		</ul>
+		<h3>Datenstrukturen:</h3>
+		<ul>
+			<li>nicht einfach nur List, Set, Map etc.</li>
+			<li>sondern mit Vorgaben für Laufzeit und Benutzung</li>
+			<li>
+				z.B.: push, delAt, getAt =
+				<a href="https://github.com/42LoCo42/krimskrams/blob/main/src/pushRD.h" target="_blank">
+					pushRD-Struktur von krimskrams
+				</a>
+			</li>
+		</ul>
+		<h3>Codepfad-Scanning:</h3>
+		<ul>
+			<li>welche Bereiche im Code werden relativ zu einer Position immer oder nur manchmal ausgeführt</li>
+			<li>
+				kann benutzt werden für:
+				<ul>
+					<li>dead code eliminiation</li>
+					<li>erkennen, ob Variable initialisiert wurde</li>
+					<li>erkennen, ob ein @Destroy Call auftritt (@MaybeDestroy wenn nur manchmal)</li>
+				</ul>
+			</li>
+			<li>Code nach einem @MaybeDestroy Call könnte z.B. if exists benutzen</li>
+		</ul>
+		<h3>Metaprogramming:</h3>
+		<ul>
+			<li>Homoikonizit&auml;t</li>
+			<li>Makros wie in Lisp; Gegenbeispiele:
+				<ul>
+					<li>Template Haskell: zu komplex</li>
+					<li>C-Pr&auml;prozessor: nur Text, kein echter Sprachbezug</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+</html>
