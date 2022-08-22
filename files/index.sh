@@ -11,7 +11,23 @@ cat << EOF
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="utf-8"/>
+
 		<title>ZHS Homepage</title>
+		<meta name="description" content="my virtual home"/>
+
+		<meta property="og:url" content="https://42loco42.duckdns.org"/>
+		<meta property="og:type" content="website"/>
+		<meta property="og:title" content="ZHS Homepage"/>
+		<meta property="og:description" content="my virtual home"/>
+		<meta property="og:image" content="https://42loco42.duckdns.org/assets/seal.png"/>
+
+		<meta name="twitter:card" content="summary_large_image"/>
+		<meta property="twitter:domain" content="42loco42.duckdns.org"/>
+		<meta property="twitter:url" content="https://42loco42.duckdns.org/"/>
+		<meta name="twitter:title" content="ZHS Homepage"/>
+		<meta name="twitter:description" content="my virtual home"/>
+		<meta name="twitter:image" content="https://42loco42.duckdns.org/assets/seal.png"/>
+
 		<link rel="stylesheet" href="/index.css"/>
 	</head>
 	<body style="display: none">
@@ -37,7 +53,7 @@ cat << EOF
 					<img class="badge" alt="The trans flag" src="/assets/trans.png"/>
 				</p>
 			</div>
-			<div>
+			<div style="margin-right: 16px;">
 				<h1>Available Services</h1>
 				<form method="get">
 EOF
@@ -83,7 +99,8 @@ cat << EOF
 					<li>
 						A secure communications library, as a minimalistic alternative to TLS:
 						<a href="https://github.com/42LoCo42/zeolite" target="_blank">zeolite</a><br/>
-						Still working on a better multi-client support...
+						I am currently rewriting the whole thing in Go to learn the language:
+						<a href="https://github.com/42LoCo42/go-zeolite" target="_blank">go-zeolite</a><br/>
 					</li>
 					<li>
 						A REPL for C, with eventual support for variables and autocompletion:
@@ -158,7 +175,21 @@ cat << EOF
 				<a href="https://validator.w3.org/nu/?doc=https%3A%2F%2F42loco42.duckdns.org%2F" target="_blank">
 					<img class="badge" alt="HTML5 Valid" src="/assets/html5-validator-badge.png"/>
 				</a>
+				<a href="http://www.catb.org/jargon/html/H/hacker.html" target="_blank">
+					<img class="badge" alt="Hacker emblem" src="/assets/glider.png"/>
+				</a>
+				<a href="/stash/decss.c">
+					<img class="badge" alt="DeCSS flag" src="/assets/decss.png"/>
+				</a>
 				<img class="badge" alt="100% cookie free!" src="/assets/nocookie.png"/>
+				<img class="badge" alt="Anti NFT site" src="/assets/antiNFT.gif"/>
+				<a href="http://www.gnuterrypratchett.com/" target="_blank">
+					<img class="badge" alt="Clacks GIF" src="/assets/clacks.gif"/>
+					<img class="badge" alt="Clacks powered" src="/assets/clacks-powered.png"/>
+				</a>
+				<a href="/foo/2459531f194acad2b4f4c0caee433873febbeb659c6e0971ac4838d6109d1441.png">
+					<img class="badge" alt="My seal/logo" src="/assets/seal.png"/>
+				</a>
 				<img class="badge" alt="AroAce flag" src="/assets/flag.png"/>
 				<img class="badge" alt="This is a safe space" src="/assets/safespace.png"/>
 				This is a safe space for everyone!
