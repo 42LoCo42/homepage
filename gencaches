@@ -25,7 +25,7 @@ case "$1" in
 	logo) neofetch -L | aha -s -n > "caches/logo" ;;
 
 	neofetch)
-		neofetch --backend off \
+		USER=eleonora neofetch --backend off \
 		| sed '
 			s|Uptime.*|Uptime[m: UPTIME|;
 			s|Memory.*|Memory[m: MEMORY|;
@@ -43,5 +43,10 @@ Total size occupied by packages: <span class="cyan">$(getsize)</span>
 EOF
 	;;
 
-	git) git log --oneline --graph --format="$fmt" > "caches/gitlog" ;;
+	git)
+		git log --oneline --graph --format="$fmt" \
+		| sed '
+			s|Leon Schumacher|Eleonora|;
+			s|&|&amp;|g;
+		' > "caches/gitlog" ;;
 esac

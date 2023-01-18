@@ -1,41 +1,42 @@
 #!/usr/bin/env bash
 
-# read -r d m y <<< "$(date +"%d %m %Y")"
-# age=$((y - 2002))
-# if ((m < 11 || (m == 11 && d < 4))); then
-# 	((age--))
-# fi
+read -r d m y <<< "$(date +"%d %m %Y")"
+age=$((y - 2002))
+if ((m < 11 || (m == 11 && d < 4))); then
+	((age--))
+fi
 
 cat << EOF
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-		<title>ZHS Homepage</title>
+		<title>My homepage</title>
 		<meta name="description" content="my virtual home"/>
 
 		<meta property="og:url" content="https://42loco42.duckdns.org"/>
 		<meta property="og:type" content="website"/>
-		<meta property="og:title" content="ZHS Homepage"/>
+		<meta property="og:title" content="My homepage"/>
 		<meta property="og:description" content="my virtual home"/>
 		<meta property="og:image" content="https://42loco42.duckdns.org/assets/seal.png"/>
 
 		<meta name="twitter:card" content="summary_large_image"/>
 		<meta property="twitter:domain" content="42loco42.duckdns.org"/>
 		<meta property="twitter:url" content="https://42loco42.duckdns.org/"/>
-		<meta name="twitter:title" content="ZHS Homepage"/>
+		<meta name="twitter:title" content="My homepage"/>
 		<meta name="twitter:description" content="my virtual home"/>
 		<meta name="twitter:image" content="https://42loco42.duckdns.org/assets/seal.png"/>
 
 		<link rel="stylesheet" href="/index.css"/>
 	</head>
 	<body style="display: none">
-		<div style="display: grid; grid-template-columns: 1fr auto 1fr;">
-			<div>
+		<div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+			<div style="flex: 3;">
 				<h1>About me</h1>
 				<p>
-					I am Eleonora Schumacher, a 19 year old undergraduate student at the
+					I am Eleonora, a $age year old undergraduate student at the
 					<a href="https://www.hochschule-stralsund.de" target="_blank">Hochschule Stralsund</a>,<br/>
 					where I study IT-Security and Mobile Systems.
 				</p><p>
@@ -44,7 +45,7 @@ cat << EOF
 				</p><p>
 					I am autistic, but do not view myself as medically disabled.<br/>
 					Instead, I advocate for the implementation of the <a href="https://en.wikipedia.org/wiki/Social_model_of_disability" target="_blank">social model of disability</a>.<br/>
-					I am also aromantic and asexual and greatly value LGBTQIA+/GSRM rights.
+					I am also aromantic and asexual and greatly value queer rights.
 				</p>
 				<p>
 					Approximately during December 2021, I have realized that I am a woman.
@@ -53,7 +54,7 @@ cat << EOF
 					<img class="badge" alt="The trans flag" src="/assets/trans.png"/>
 				</p>
 			</div>
-			<div style="margin-right: 16px;">
+			<div style="margin-right: 15px;">
 				<h1>Available Services</h1>
 				<form method="get">
 EOF
@@ -64,7 +65,10 @@ find . \
 | uniq \
 | while read -r dir; do
 	echo "<button formaction=\"$dir\">"
-	[ -f "$dir/favicon.ico" ] && echo "<img alt=\"$dir\" src=\"$dir/favicon.ico\"/>"
+	src=""
+	[ -z "$src" ] && [ -f "foo/$dir-favicon.ico" ] && src="foo/$dir-favicon.ico"
+	[ -z "$src" ] && [ -f "$dir/favicon.ico" ] && src="$dir/favicon.ico"
+	[ -n "$src" ] && echo "<img alt=\"$dir\" src=\"$src\"/>"
 	echo "<span>$dir</span></button>"
 done
 
@@ -112,27 +116,20 @@ cat << EOF
 		<hr/>
 
 		<h1>Sysinfo</h1>
-		<div style="display: grid; grid-template-columns: auto 1fr 1fr 1fr;">
-			<div style='grid-column: 1 / 3;'>
+		<div style="display: flex; flex-flow: row wrap; justify-content: space-between;">
+			<div>
 				<h3>Neofetch</h3>
-			</div>
-			<div style='grid-column: 3;'>
-				<h3>Packages</h3>
-			</div>
-			<div>
-				<h3>Git-Log</h3>
-			</div>
-			<div style="margin-right: 15px;">
-				<pre>
+				<div style="display: flex; flex-flow: row wrap;">
+					<pre style="margin-right: 15px;">
 $(< "$DOCUMENT_ROOT/../caches/logo")
-				</pre>
-			</div>
-			<div>
-				<pre>
+					</pre>
+					<pre>
 $neofetch
-				</pre>
+					</pre>
+				</div>
 			</div>
 			<div>
+				<h3>Packages</h3>
 				<pre>
 $(< "$DOCUMENT_ROOT/../caches/packages")
 				</pre>
@@ -149,11 +146,13 @@ $(< "$DOCUMENT_ROOT/../caches/packages")
 					<li><a href="https://kikuo.jp/" target="_blank">Good music</a></li>
 				</ul>
 			</div>
-			<pre style="height: 20em; overflow: scroll; border: solid 1px var(--color-7);">
+			<div>
+				<h3>Git-Log</h3>
+				<pre style="width: 40em; height: 20em; overflow: scroll; border: solid 1px var(--color-7);">
 $(< "$DOCUMENT_ROOT/../caches/gitlog")
-			</pre>
+				</pre>
+			</div>
 		</div>
-		<hr/>
 EOF
 #		<div style="display: grid; grid-template-columns: auto auto;">
 #			<div>
@@ -170,8 +169,9 @@ EOF
 #		</div>
 #		<hr/>
 cat << EOF
-		<div style="display: grid; grid-template-columns: auto auto;">
-			<div>
+		<hr/>
+		<div style="display: flex; flex-flow: wrap; justify-content: space-between; row-gap: 10px;">
+			<span>
 				<a href="https://validator.w3.org/nu/?doc=https%3A%2F%2F42loco42.duckdns.org%2F" target="_blank">
 					<img class="badge" alt="HTML5 Valid" src="/assets/html5-validator-badge.png"/>
 				</a>
@@ -190,13 +190,17 @@ cat << EOF
 				<a href="/foo/2459531f194acad2b4f4c0caee433873febbeb659c6e0971ac4838d6109d1441.png">
 					<img class="badge" alt="My seal/logo" src="/assets/seal.png"/>
 				</a>
+				<img class="badge" alt="programming socks uwu" src="/assets/programmingsocks.gif"/>
 				<img class="badge" alt="AroAce flag" src="/assets/flag.png"/>
 				<img class="badge" alt="This is a safe space" src="/assets/safespace.png"/>
 				This is a safe space for everyone!
-			</div>
-			<div>
-				2022-04-25 - Migration to lighttpd complete!
-			</div>
+			</span>
+			<span>
+				2023-01-09 - we have subdomain routing and a wildcard certificate!
+			</span>
+			<code>
+				GCS/IT d? s:- a-- C++ UL++++$ P-(+) L+++ E++ W++ N+ o+ K? w--- !O M- !V PS+++ PE-- Y++ PGP++ !t 5 !X R>+ !tv b+(++) !DI D+ G>++ e>++ h+ r-- !x
+			</code>
 		</div>
 	</body>
 </html>
