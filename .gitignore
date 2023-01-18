@@ -7,3 +7,5 @@ htdigest
 
 **/stash/*
 !**/stash/index.sh
+/files/foo
+/disabled
