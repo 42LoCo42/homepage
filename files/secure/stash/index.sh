@@ -1,1 +1,0 @@
-../../stash/index.sh

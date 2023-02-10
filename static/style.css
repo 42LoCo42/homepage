@@ -1,0 +1,109 @@
+:root {
+	--white:  #ebdbb2;
+	--black:  #282828;
+	--green:  #98971a;
+	--yellow: #d79921;
+	--blue:   #458588;
+	--blue-light: #83A598;
+}
+
+@font-face {
+	font-family: "Iosevka Nerd Font";
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	src:
+		local("Iosevka Nerd Font"),
+		url(/iosevka.ttf) format("truetype");
+}
+
+html {
+	display: table;
+	margin: 25px auto;
+}
+
+body {
+	display: table;
+	vertical-align: middle;
+
+	color: var(--white);
+	background-color: var(--black);
+	font-family: "Iosevka Nerd Font", "monospace";
+	font-size: 2.5vmin;
+}
+
+@media only screen and (max-width: 768px) {
+	body {
+		font-size: 4vmin;
+	}
+
+	.mobile-vbox {
+		flex-flow: column wrap;
+	}
+}
+
+vbox {
+	display: flex;
+	flex-flow: column wrap;
+}
+
+hbox {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+a {
+	color: var(--blue);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--blue-light);
+	text-decoration: var(--blue-light) dotted underline;
+}
+
+a:active {
+	color: var(--green);
+	text-decoration: var(--green) underline;
+}
+
+prompt {
+	display: flex;
+	flex-flow: row;
+}
+
+prompt :nth-child(1) {
+	color: var(--green);
+	font-weight: bold;
+}
+
+prompt :nth-child(2) {
+	color: var(--blue);
+	font-weight: bold;
+}
+
+neofetch {
+	color: var(--green);
+	font-weight: bold;
+}
+
+neosub {
+	margin-left: 1em;
+	color: var(--yellow);
+}
+
+@keyframes blink {
+	0%   { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+#profile {
+	width: 250px;
+	height: 250px;
+	border-radius: 50%;
+	margin-bottom: 10px;
+}
+
+cursor {
+	animation: blink 500ms linear infinite alternate;
+}
