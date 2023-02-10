@@ -1,18 +1,17 @@
 {{define "prompt"}}
-<prompt>
+<x-prompt>
   <span>eleonora@bunny</span>:
   <span>{{index . 0}}</span>$&nbsp;
-  <typw-ctrl pause="750" delay="50"/>
-  {{index . 1}}
-  <typw-ctrl delay="5"/>
-</prompt>
+  <typw-ctrl pause="750" delay="50">{{index . 1}}</typw-ctrl>
+  <typw-ctrl delay="5"></typw-ctrl>
+</x-prompt>
 {{end}}
 
 <!DOCTYPE html>
-<html lang="en-US" prefix="og: https://ogp.me/ns#">
+<html lang="en-US" prefix="og: https://ogp.me/ns#" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Hi! 🏳️‍⚧️ 🏳️‍🌈 💜</title>
 
     <meta property="og:title" content="Eleonora's homepage">
@@ -22,56 +21,60 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://eleonora.gay/profile.jpg">
 
-    <link href="/style.css" rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet">
   </head>
   <body>
     <div id="terminal">
       {{template "prompt" (arr "~" "cd homepage")}}
       {{template "prompt" (arr "~/homepage" "neofetch")}}
-      <typw-ctrl hidec=""/>
-      <br/><br/>
+      <typw-ctrl hidec=""></typw-ctrl>
+      <br><br>
 
-      <hbox class="mobile-vbox" style="row-gap: 20px; column-gap: 20px;">
-        <vbox style="row-gap: 5px;">
-          <img id="profile" src="/profile.jpg">
+      <h-box class="mobile-v-box" style="row-gap: 20px; column-gap: 20px;">
+        <v-box style="row-gap: 5px;">
+          <img id="profile" src="/profile.jpg" alt="
+            My profile picture:
+            a knitted woolen strawberry on a cap
+            that has a trans flag color pattern."
+          >
           <small>󰇮&emsp;leonsch@protonmail.com</small>
           <small>󰙯&emsp;42LoCo42#0130</small>
-        </vbox>
+        </v-box>
 
         <div>
-          <span style="color: #98971a"><b>eleonora</b></span>@<span style="color: #98971a"><b>bunny</b></span><br/>
-          ──────────────<br/>
+          <span style="color: #98971a"><b>eleonora</b></span>@<span style="color: #98971a"><b>bunny</b></span><br>
+          ──────────────<br>
 
-          <neofetch>Name</neofetch>: Eleonora<br/>
-          <neofetch>Pronouns</neofetch>: she/her<br/>
-          <neofetch>Age</neofetch>: 20<br/>
+          <x-neofetch>Name</x-neofetch>: Eleonora<br>
+          <x-neofetch>Pronouns</x-neofetch>: she/her<br>
+          <x-neofetch>Age</x-neofetch>: 20<br>
 
-          <neofetch>Public key</neofetch>:
-          <a href="/pubkey.asc" download="">Download</a><br/>
+          <x-neofetch>Public key</x-neofetch>:
+          <a href="/pubkey.asc" download="">Download</a><br>
 
-          <neofetch>Studying</neofetch>:
-          <a href="https://www.hochschule-stralsund.de/smsb/">IT-Security and Mobile Systems</a><br/>
+          <x-neofetch>Studying</x-neofetch>:
+          <a href="https://www.hochschule-stralsund.de/smsb/">IT-Security and Mobile Systems</a><br>
 
-          <neofetch>GitHub</neofetch>:
-          <a href="https://github.com/42LoCo42/">Link</a><br/>
+          <x-neofetch>GitHub</x-neofetch>:
+          <a href="https://github.com/42LoCo42/">Link</a><br>
 
-          <neofetch>OS</neofetch>: Arch Linux, NixOS<br/>
+          <x-neofetch>OS</x-neofetch>: Arch Linux, NixOS<br>
 
-          <neofetch>Dotfiles</neofetch>:
+          <x-neofetch>Dotfiles</x-neofetch>:
           <a href="https://github.com/42LoCo42/.dotfiles/tree/master">Arch</a>,
           <a href="https://github.com/42LoCo42/.dotfiles/tree/nixos">NixOS</a><br>
 
-          <neofetch>Languages</neofetch>:<br/>
-          <neosub>Human</neosub>: German (native), English (fluent)<br/>
-          <neosub>Systems</neosub>: C/C++, Go, Rust<br/>
-          <neosub>Functional</neosub>: Haskell, Lisp<br/>
-          <neosub>JVM</neosub>: Java, Kotlin<br/>
-          <neosub>Scripting</neosub>: Bash, Python<br/>
-          <neofetch>Trans rights are</neofetch>: Human rights<br/>
+          <x-neofetch>Languages</x-neofetch>:<br>
+          <x-neosub>Human</x-neosub>: German (native), English (fluent)<br>
+          <x-neosub>Systems</x-neosub>: C/C++, Go, Rust<br>
+          <x-neosub>Functional</x-neosub>: Haskell, Lisp<br>
+          <x-neosub>JVM</x-neosub>: Java, Kotlin<br>
+          <x-neosub>Scripting</x-neosub>: Bash, Python<br>
+          <x-neofetch>Trans rights are</x-neofetch>: Human rights<br>
 
-          <br/>
+          <br>
 
-          <hbox>
+          <h-box>
             <span style="color: #cc241d; background-color: #cc241d;">if&nbsp;</span>
             <span style="color: #98971a; background-color: #98971a;">you</span>
             <span style="color: #d79921; background-color: #d79921;">&nbsp;re</span>
@@ -79,9 +82,9 @@
             <span style="color: #b16286; background-color: #b16286;">thi</span>
             <span style="color: #689d6a; background-color: #689d6a;">s,&nbsp;</span>
             <span style="color: #a89984; background-color: #a89984;">you</span>
-          </hbox>
+          </h-box>
 
-          <hbox>
+          <h-box>
             <span style="color: #fb4934; background-color: #fb4934;">&nbsp;&nbsp;&nbsp;</span>
             <span style="color: #b8bb26; background-color: #b8bb26;">are</span>
             <span style="color: #fabd2f; background-color: #fabd2f;">&nbsp;&nbsp;&nbsp;</span>
@@ -89,12 +92,11 @@
             <span style="color: #d3869b; background-color: #d3869b;">&nbsp;&nbsp;&nbsp;</span>
             <span style="color: #8ec07c; background-color: #8ec07c;">lol</span>
             <span style="color: #ebdbb2; background-color: #ebdbb2;">&nbsp;&nbsp;&nbsp;</span>
-          </hbox>
+          </h-box>
         </div>
-      </hbox>
+      </h-box>
     </div>
 
-    <script src="/autoreload.js"></script>
     <script src="/typeIndex.js"></script>
   </body>
 </html>

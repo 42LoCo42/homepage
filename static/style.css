@@ -37,17 +37,17 @@ body {
 		font-size: 4vmin;
 	}
 
-	.mobile-vbox {
+	.mobile-v-box {
 		flex-flow: column wrap;
 	}
 }
 
-vbox {
+v-box {
 	display: flex;
 	flex-flow: column wrap;
 }
 
-hbox {
+h-box {
 	display: flex;
 	flex-flow: row wrap;
 }
@@ -67,27 +67,27 @@ a:active {
 	text-decoration: var(--green) underline;
 }
 
-prompt {
+x-prompt {
 	display: flex;
 	flex-flow: row;
 }
 
-prompt :nth-child(1) {
+x-prompt :nth-child(1) {
 	color: var(--green);
 	font-weight: bold;
 }
 
-prompt :nth-child(2) {
+x-prompt :nth-child(2) {
 	color: var(--blue);
 	font-weight: bold;
 }
 
-neofetch {
+x-neofetch {
 	color: var(--green);
 	font-weight: bold;
 }
 
-neosub {
+x-neosub {
 	margin-left: 1em;
 	color: var(--yellow);
 }
