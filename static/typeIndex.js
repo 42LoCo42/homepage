@@ -44,6 +44,7 @@ async function typewriter(element, delay) {
 
 				const el = c.cloneNode(false)
 				target.insertBefore(el, cursor)
+				document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight
 
 				await run(c, el, delay)
 			}

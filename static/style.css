@@ -35,6 +35,7 @@ body {
 @media only screen and (max-width: 768px) {
 	body {
 		font-size: 4vmin;
+		margin-bottom: 75px;
 	}
 
 	.mobile-v-box {
