@@ -5,6 +5,14 @@
 	--yellow: #d79921;
 	--blue:   #458588;
 	--blue-light: #83A598;
+
+	--darkreader-text--white:  #ebdbb2;
+	--darkreader-text--green:  #98971a;
+	--darkreader-text--yellow: #d79921;
+	--darkreader-text--blue:   #458588;
+	--darkreader-text--blue-light: #83A598;
+
+	--darkreader-bg--black:  #282828;
 }
 
 @font-face {
@@ -18,16 +26,16 @@
 }
 
 html {
-	display: table;
-	margin: 25px auto;
+	background-color: var(--black) !important;
 }
 
 body {
 	display: table;
 	vertical-align: middle;
+	margin: 25px auto;
 
 	color: var(--white);
-	background-color: var(--black);
+	background-color: var(--black) !important;
 	font-family: "Iosevka Nerd Font", "monospace";
 	font-size: 2.5vmin;
 }
