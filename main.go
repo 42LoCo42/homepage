@@ -13,11 +13,11 @@ func main() {
 	app := aero.New()
 
 	app.Get("/", func(ctx aero.Context) error {
-		if err := ServeTemplate("index.html", nil, ctx); err != nil {
-			return err
-		}
+		return ServeTemplate(nil, ctx, "index.html", "tree.html")
+	})
 
-		return nil
+	app.Get("/matrix", func(ctx aero.Context) error {
+		return ServeTemplate(nil, ctx, "matrix.html")
 	})
 
 	// fileserver
@@ -49,18 +49,18 @@ func OnError(err error, ctx aero.Context) error {
 	return err
 }
 
-func ServeTemplate(name string, data any, ctx aero.Context) error {
+func ServeTemplate(data any, ctx aero.Context, names ...string) error {
 	t, err := template.New("").Funcs(template.FuncMap{
 		"arr": func(arr ...any) []any {
 			return arr
 		},
-	}).ParseFiles(name)
+	}).ParseFiles(names...)
 	if err != nil {
 		OnError(errors.Wrap(err, "template parse"), ctx)
 		return err
 	}
 
-	if err := t.ExecuteTemplate(ctx.Response().Internal(), name, data); err != nil {
+	if err := t.ExecuteTemplate(ctx.Response().Internal(), names[0], data); err != nil {
 		OnError(errors.Wrap(err, "template execute"), ctx)
 		return err
 	}

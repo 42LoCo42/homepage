@@ -46,13 +46,15 @@ async function typewriter(element, delay) {
 				target.insertBefore(el, cursor)
 				document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight
 
-				await run(c, el, delay)
+				if (el.offsetParent !== null) {
+					await run(c, el, delay)
+				}
 			}
 		}
 	}
 }
 
-const SKIP_KEY = "skipAnimation"
+const SKIP_KEY = "skipAnimation" + location.pathname
 if (sessionStorage.getItem(SKIP_KEY) === null) {
 	(async () => {
 		await typewriter(

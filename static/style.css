@@ -40,6 +40,22 @@ body {
 	font-size: 2.5vmin;
 }
 
+.mobile-v-box {
+	display: flex;
+}
+
+@media only screen and (min-width: 768px) {
+	#terminal > :nth-child(2) {
+		margin-left: 25px;
+		padding-left: 25px;
+		border-left: 2px solid var(--green);
+	}
+
+	.mobile-v-box {
+		flex-flow: row wrap;
+	}
+}
+
 @media only screen and (max-width: 768px) {
 	body {
 		font-size: 4vmin;
@@ -48,6 +64,10 @@ body {
 
 	.mobile-v-box {
 		flex-flow: column wrap;
+	}
+
+	#split-pane {
+		display: none;
 	}
 }
 
@@ -81,12 +101,12 @@ x-prompt {
 	flex-flow: row;
 }
 
-x-prompt :nth-child(1) {
+x-prompt > :nth-child(1) {
 	color: var(--green);
 	font-weight: bold;
 }
 
-x-prompt :nth-child(2) {
+x-prompt > :nth-child(2) {
 	color: var(--blue);
 	font-weight: bold;
 }
