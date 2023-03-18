@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 GOARCH=arm64 CGO_ENABLED=0 go build .
 rsync -azvLP --delete \
+	--exclude="static/foo/" \
 	element.config.json \
 	index.html \
 	matrix.html \
