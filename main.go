@@ -22,6 +22,10 @@ func main() {
 
 	// fileserver
 	app.Get("/*file", func(ctx aero.Context) error {
+		name := ctx.Get("file")
+		if name[len(name)-1] == '/' {
+			return ctx.Error(http.StatusForbidden)
+		}
 		return ctx.File("static/" + ctx.Get("file"))
 	})
 
