@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: https://ogp.me/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+		<title>Cool-looking things</title>
+		<link href="/style.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<h1>
+			{{$Path := .Title}}
+
+			{{if (eq .Title "")}}
+				{{$Path = "/camera"}}
+				My media collection
+			{{else}}
+				{{.Title}}
+			{{end}}
+		</h1>
+		Work in progress!
+
+		<div>
+			<h3>Subdirectories:</h3>
+			{{range .Items}}
+				{{if .IsDir}}
+					<a href="/camera/{{.Name}}">{{.Name}}</a><br/>
+				{{end}}
+			{{end}}
+			<hr/>
+
+			<h3>Media:</h3>
+			{{range .Items}}
+				{{if (not .IsDir)}}
+					{{if (IsVideo .)}}
+						<video style="max-width: 25%;" controls>
+							<source src="{{$Path}}/{{.Name}}" type="video/webm">
+						</video>
+					{{else}}
+						<a href="{{$Path}}/{{.Name}}">
+							<img style="max-width: 25%;" src="{{$Path}}/{{.Name}}"/>
+						</a>
+					{{end}}
+					<br/>
+				{{end}}
+			{{end}}
+		</div>
+</body>
+</html>

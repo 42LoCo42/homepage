@@ -2,8 +2,11 @@ package main
 
 import (
 	"html/template"
+	"io/fs"
 	"log"
 	"net/http"
+	"os"
+	"strings"
 
 	"github.com/aerogo/aero"
 	"github.com/pkg/errors"
@@ -29,6 +32,10 @@ func main() {
 		return ctx.File("static/" + ctx.Get("file"))
 	})
 
+	app.Get("/camera", Camera)
+	app.Get("/camera/", Camera)
+	app.Get("/camera/*path", Camera)
+
 	// log requests
 	app.Use(func(handler aero.Handler) aero.Handler {
 		return func(ctx aero.Context) error {
@@ -47,6 +54,45 @@ func main() {
 	app.Run()
 }
 
+func Camera(ctx aero.Context) error {
+	path := ctx.Get("path")
+	if strings.HasSuffix(path, "/") {
+		return ctx.Redirect(
+			http.StatusMovedPermanently,
+			"/camera"+strings.TrimSuffix(path, "/"),
+		)
+	}
+
+	log.Print("camera path requested: ", path)
+
+	data := struct {
+		Title string
+		Items []fs.DirEntry
+	}{
+		Title: path,
+	}
+
+	path = "static/camera/" + path
+
+	info, err := os.Stat(path)
+	if err != nil {
+		log.Print("/camera stat error: ", err)
+		return ctx.Error(http.StatusInternalServerError)
+	}
+
+	if info.IsDir() {
+		data.Items, err = os.ReadDir(path)
+		if err != nil {
+			log.Print("/camera error: ", err)
+			return ctx.Error(http.StatusInternalServerError)
+		}
+
+		return ServeTemplate(data, ctx, "camera.html")
+	} else {
+		return ctx.File(path)
+	}
+}
+
 func OnError(err error, ctx aero.Context) error {
 	ctx.Redirect(http.StatusInternalServerError, "/err.html")
 	log.Print("ERROR: ", err)
@@ -58,6 +104,7 @@ func ServeTemplate(data any, ctx aero.Context, names ...string) error {
 		"arr": func(arr ...any) []any {
 			return arr
 		},
+		"IsVideo": IsVideo,
 	}).ParseFiles(names...)
 	if err != nil {
 		OnError(errors.Wrap(err, "template parse"), ctx)
@@ -70,4 +117,8 @@ func ServeTemplate(data any, ctx aero.Context, names ...string) error {
 	}
 
 	return nil
+}
+
+func IsVideo(item fs.DirEntry) bool {
+	return strings.HasSuffix(item.Name(), ".mp4")
 }
