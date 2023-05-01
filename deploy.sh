@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+cp "$HOME/.config/emacs/init.html" "static/emacs/"
+make
 GOARCH=arm64 CGO_ENABLED=0 go build .
 rsync -azvLP --delete \
 	--exclude="static/foo/" \
