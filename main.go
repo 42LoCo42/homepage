@@ -5,7 +5,6 @@ import (
 	"io/fs"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 
 	"github.com/aerogo/aero"
@@ -32,10 +31,6 @@ func main() {
 		return ctx.File("static/" + ctx.Get("file"))
 	})
 
-	app.Get("/camera", Camera)
-	app.Get("/camera/", Camera)
-	app.Get("/camera/*path", Camera)
-
 	// log requests
 	app.Use(func(handler aero.Handler) aero.Handler {
 		return func(ctx aero.Context) error {
@@ -52,45 +47,6 @@ func main() {
 	log.Print("Startup")
 	app.Config.Ports.HTTP = 8000
 	app.Run()
-}
-
-func Camera(ctx aero.Context) error {
-	path := ctx.Get("path")
-	if strings.HasSuffix(path, "/") {
-		return ctx.Redirect(
-			http.StatusMovedPermanently,
-			"/camera"+strings.TrimSuffix(path, "/"),
-		)
-	}
-
-	log.Print("camera path requested: ", path)
-
-	data := struct {
-		Title string
-		Items []fs.DirEntry
-	}{
-		Title: path,
-	}
-
-	path = "static/camera/" + path
-
-	info, err := os.Stat(path)
-	if err != nil {
-		log.Print("/camera stat error: ", err)
-		return ctx.Error(http.StatusInternalServerError)
-	}
-
-	if info.IsDir() {
-		data.Items, err = os.ReadDir(path)
-		if err != nil {
-			log.Print("/camera error: ", err)
-			return ctx.Error(http.StatusInternalServerError)
-		}
-
-		return ServeTemplate(data, ctx, "camera.html")
-	} else {
-		return ctx.File(path)
-	}
 }
 
 func OnError(err error, ctx aero.Context) error {
