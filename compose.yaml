@@ -16,6 +16,7 @@ services:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./homepage/out:/srv/homepage:ro
       - ./element/out:/srv/element:ro
+      - $HOME/bags:/srv/bags:ro
 
   searxng:
     build: searxng

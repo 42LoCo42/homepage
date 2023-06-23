@@ -5,7 +5,7 @@
 	}
 }
 
-(headers) {
+(default) {
 	header {
 		X-Clacks-Overhead "GNU Terry Pratchett"
 
@@ -27,21 +27,36 @@
 		# keep referrer data off of HTTP connections
 		Referrer-Policy no-referrer-when-downgrade1
 	}
+
+	handle_errors {
+		rewrite * /{err.status_code}
+		reverse_proxy https://http.cat {
+			header_up Host {upstream_hostport}
+			replace_status {err.status_code}
+		}
+	}
 }
 
 eleonora.gay {
-	import headers
+	import default
 	root * /srv/homepage
 	file_server
 }
 
 element.eleonora.gay {
-	import headers
+	import default
 	root * /srv/element
 	file_server
 }
 
+bags.eleonora.gay {
+	import default
+	root * /srv/bags
+	file_server browse
+}
+
 searx.eleonora.gay {
+	import default
 	reverse_proxy searxng:8080 {
 		header_up X-Real-Ip {http.request.remote.host}
 		header_up X-Forwarded-Port {http.request.port}
@@ -49,6 +64,7 @@ searx.eleonora.gay {
 }
 
 matrix.eleonora.gay {
+	import default
 	route {
 		reverse_proxy /_matrix/* synapse:8008
 		reverse_proxy /_synapse/client/* synapse:8008
@@ -58,9 +74,11 @@ matrix.eleonora.gay {
 }
 
 wbo.eleonora.gay {
+	import default
 	reverse_proxy wbo:8080
 }
 
 ntfy.eleonora.gay {
+	import default
 	reverse_proxy ntfy:8080
 }
