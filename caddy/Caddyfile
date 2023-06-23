@@ -86,3 +86,8 @@ ntfy.eleonora.gay {
 	import default
 	reverse_proxy ntfy:8080
 }
+
+img.eleonora.gay {
+	import default
+	reverse_proxy pigallery2:8080
+}

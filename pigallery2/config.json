@@ -1,0 +1,11 @@
+{
+	"Server": {
+		"applicationTitle": "PiGallery 2",
+		"publicUrl": "https://img.eleonora.gay",
+		"port": 8080
+	},
+	"Gallery": {
+		"defaultPhotoSortingMethod": "ascName",
+		"enableDownloadZip": true
+	}
+}

@@ -23,10 +23,10 @@ services:
     user: nobody:nogroup
     cap_drop:
       - ALL
-    volumes:
-      - ./searxng:/etc/searxng:ro
     environment:
       - SEARXNG_SECRET
+    volumes:
+      - ./searxng:/etc/searxng:ro
 
   # cache for searxng
   redis:
@@ -65,9 +65,24 @@ services:
       - ./ntfy/server.yml:/etc/ntfy/server.yml:ro
       - ntfy_data:/var/cache/ntfy:rw
 
+  pigallery2:
+    build: pigallery2
+    user: nobody:nogroup
+    cap_drop:
+      - ALL
+    environment:
+      - NODE_ENV=production # set to 'debug' for full debug logging
+    volumes:
+      - pigallery2_db:/app/data/db:rw
+      - pigallery2_tmp:/app/data/tmp:rw
+      - ./pigallery2/config.json:/app/data/config/config.json:ro
+      - $HOME/images:/app/data/images:ro
+
 volumes:
   caddy_data:
   caddy_config:
   synapse_data:
   wbo_data:
   ntfy_data:
+  pigallery2_db:
+  pigallery2_tmp:
