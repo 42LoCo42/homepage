@@ -1,5 +1,9 @@
+TARGETS := \
+	homepage \
+	element \
+
 build:
-	make -C homepage
+	./run.sh build $(TARGETS)
 
 clean:
-	make -C homepage clean
+	./run.sh clean $(TARGETS)

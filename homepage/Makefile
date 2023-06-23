@@ -1,8 +1,8 @@
-run:
+build:
+	mkdir -p out
 	./processStuff.sh
-	go run .
+	homepage-builder
 	rsync -av static/ out/
 
 clean:
-	rm -f out/*
-	rm -f tree.html
+	rm -rf out tree.html

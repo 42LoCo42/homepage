@@ -1,0 +1,15 @@
+# eleonora.gay {
+# 	file_server {
+# 		root homepage/out
+# 	}
+# }
+{
+	http_port 8000
+	https_port 4430
+}
+
+localhost {
+	file_server {
+		root element/out
+	}
+}
