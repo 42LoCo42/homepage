@@ -1,4 +1,3 @@
-#!/usr/bin/env -S awk -f
 {
 	match($0, /^([ └├─│]*)(.+)$/, a)
 

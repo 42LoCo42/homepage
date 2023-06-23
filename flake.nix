@@ -1,5 +1,5 @@
 {
-  description = "devshell for my homepage";
+  description = "My server infrastructure";
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
@@ -11,7 +11,9 @@
       {
         devShell = pkgs.mkShell {
           packages = with pkgs; [
+            bashInteractive
             go
+            gopls
           ];
         };
       });

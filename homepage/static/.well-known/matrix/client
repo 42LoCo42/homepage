@@ -1,5 +1,5 @@
 {
-    "m.homeserver": {
+	"m.homeserver": {
 		"base_url": "matrix.eleonora.gay"
 	}
 }
