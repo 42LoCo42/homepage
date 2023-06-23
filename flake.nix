@@ -24,6 +24,7 @@
           packages = with pkgs; [
             bashInteractive
             caddy
+            glibcLocalesUtf8
             go
             gopls
             homepage-builder
