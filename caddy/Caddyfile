@@ -60,3 +60,7 @@ matrix.eleonora.gay {
 wbo.eleonora.gay {
 	reverse_proxy wbo:8080
 }
+
+ntfy.eleonora.gay {
+	reverse_proxy ntfy:8080
+}

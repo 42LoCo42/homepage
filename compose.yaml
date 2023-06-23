@@ -53,8 +53,20 @@ services:
     volumes:
       - wbo_data:/opt/app/server-data:rw
 
+  ntfy:
+    build: ntfy
+    user: nobody:nogroup
+    cap_drop:
+      - ALL
+    command:
+      - serve
+    volumes:
+      - ./ntfy/server.yml:/etc/ntfy/server.yml:ro
+      - ntfy_data:/var/cache/ntfy:rw
+
 volumes:
   caddy_data:
   caddy_config:
   synapse_data:
   wbo_data:
+  ntfy_data:
