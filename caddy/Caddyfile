@@ -56,3 +56,7 @@ matrix.eleonora.gay {
 		redir https://element.eleonora.gay
 	}
 }
+
+wbo.eleonora.gay {
+	reverse_proxy wbo:8080
+}

@@ -20,22 +20,22 @@ services:
   searxng:
     build: searxng
     user: nobody:nogroup
+    cap_drop:
+      - ALL
     volumes:
       - ./searxng:/etc/searxng:ro
     environment:
       - SEARXNG_SECRET
-    cap_drop:
-      - ALL
 
   # cache for searxng
   redis:
     image: redis:alpine
     user: nobody:nogroup
+    cap_drop:
+      - ALL
     command: redis-server --save "" --appendonly "no"
     tmpfs:
       - /var/lib/redis
-    cap_drop:
-      - ALL
 
   synapse:
     image: matrixdotorg/synapse:v1.85.2
@@ -45,7 +45,16 @@ services:
     volumes:
       - synapse_data:/data:rw
 
+  wbo:
+    build: wbo
+    user: nobody:nogroup
+    cap_drop:
+      - ALL
+    volumes:
+      - wbo_data:/opt/app/server-data:rw
+
 volumes:
   caddy_data:
   caddy_config:
   synapse_data:
+  wbo_data:
