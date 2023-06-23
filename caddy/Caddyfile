@@ -1,0 +1,49 @@
+{
+	log default {
+		format console
+		include http.log.access admin.api
+	}
+}
+
+(headers) {
+	header {
+		X-Clacks-Overhead "GNU Terry Pratchett"
+
+		# policy from Element
+		Content-Security-Policy "frame-ancestors 'self'"
+
+		# disable FLoC tracking
+		Permissions-Policy interest-cohort=()
+
+		# enable HSTS
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+		# disable clients from sniffing the media type
+		X-Content-Type-Options nosniff
+
+		# clickjacking protection
+		X-Frame-Options DENY
+
+		# keep referrer data off of HTTP connections
+		Referrer-Policy no-referrer-when-downgrade1
+	}
+}
+
+eleonora.gay {
+	import headers
+	root * /srv/homepage
+	file_server
+}
+
+element.eleonora.gay {
+	import headers
+	root * /srv/element
+	file_server
+}
+
+searx.eleonora.gay {
+	reverse_proxy searxng:8080 {
+		header_up X-Real-Ip {http.request.remote.host}
+		header_up X-Forwarded-Port {http.request.port}
+	}
+}

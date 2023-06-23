@@ -1,0 +1,42 @@
+services:
+  caddy:
+    build: caddy
+    user: nobody:nogroup
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - caddy_data:/data:rw
+      - caddy_config:/config:rw
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./homepage/out:/srv/homepage:ro
+      - ./element/out:/srv/element:ro
+
+  searxng:
+    build: searxng
+    user: nobody:nogroup
+    volumes:
+      - ./searxng:/etc/searxng:ro
+    environment:
+      - SEARXNG_SECRET
+    cap_drop:
+      - ALL
+
+  redis:
+    image: redis:alpine
+    user: nobody:nogroup
+    command: redis-server --save "" --appendonly "no"
+    tmpfs:
+      - /var/lib/redis
+    cap_drop:
+      - ALL
+
+
+volumes:
+  caddy_data:
+  caddy_config:

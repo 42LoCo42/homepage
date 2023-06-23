@@ -7,3 +7,6 @@ build:
 
 clean:
 	./run.sh clean $(TARGETS)
+
+image:
+	docker build -t my-caddy .

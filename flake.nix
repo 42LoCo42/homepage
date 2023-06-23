@@ -23,7 +23,6 @@
         devShell = pkgs.mkShell {
           packages = with pkgs; [
             bashInteractive
-            caddy
             glibcLocalesUtf8
             go
             gopls
