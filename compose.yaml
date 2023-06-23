@@ -27,6 +27,7 @@ services:
     cap_drop:
       - ALL
 
+  # cache for searxng
   redis:
     image: redis:alpine
     user: nobody:nogroup
@@ -36,7 +37,15 @@ services:
     cap_drop:
       - ALL
 
+  synapse:
+    image: matrixdotorg/synapse:v1.85.2
+    user: nobody:nogroup
+    cap_drop:
+      - ALL
+    volumes:
+      - synapse_data:/data:rw
 
 volumes:
   caddy_data:
   caddy_config:
+  synapse_data:
