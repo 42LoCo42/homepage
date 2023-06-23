@@ -1,7 +1,6 @@
 {
-	log default {
+	log {
 		format console
-		include http.log.access admin.api
 	}
 }
 
@@ -34,6 +33,11 @@
 			header_up Host {upstream_hostport}
 			replace_status {err.status_code}
 		}
+	}
+
+	log {
+		format console
+		level ERROR
 	}
 }
 
