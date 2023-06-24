@@ -97,3 +97,8 @@ img.eleonora.gay {
 	import default
 	reverse_proxy pigallery2:8080
 }
+
+vpn.eleonora.gay {
+	import default
+	reverse_proxy headscale:8080
+}

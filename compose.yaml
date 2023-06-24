@@ -80,6 +80,18 @@ services:
       - ./pigallery2/config.json:/app/data/config/config.json:ro
       - $HOME/images:/app/data/images:ro
 
+  headscale:
+    build: headscale
+    user: nobody:nogroup
+    cap_drop:
+      - ALL
+    command:
+      - headscale
+      - serve
+    volumes:
+      - ./headscale:/etc/headscale:ro
+      - headscale_data:/var/lib/headscale:rw
+
 volumes:
   caddy_data:
   caddy_config:
@@ -88,3 +100,4 @@ volumes:
   ntfy_data:
   pigallery2_db:
   pigallery2_tmp:
+  headscale_data:

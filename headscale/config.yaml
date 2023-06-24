@@ -1,0 +1,13 @@
+server_url: https://vpn.eleonora.gay
+listen_addr: 0.0.0.0:8080
+metrics_listen_addr: 0.0.0.0:9090
+
+private_key_path: /var/lib/headscale/private.key
+noise:
+  private_key_path: /var/lib/headscale/noise_private.key
+
+db_type: sqlite3
+db_path: /var/lib/headscale/db.sqlite
+
+ip_prefixes:
+  - 100.64.0.0/10
