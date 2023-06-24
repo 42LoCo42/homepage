@@ -10,6 +10,7 @@ services:
       - "80:80"
       - "443:443"
       - "443:443/udp"
+      - "8448:8448"
     volumes:
       - caddy_data:/data:rw
       - caddy_config:/config:rw

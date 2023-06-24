@@ -77,6 +77,12 @@ matrix.eleonora.gay {
 	}
 }
 
+# matrix federation
+eleonora.gay:8448 {
+	import default
+	reverse_proxy synapse:8008
+}
+
 wbo.eleonora.gay {
 	import default
 	reverse_proxy wbo:8080

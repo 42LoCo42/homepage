@@ -23,6 +23,7 @@
         devShell = pkgs.mkShell {
           packages = with pkgs; [
             bashInteractive
+            curlHTTP3
             glibcLocalesUtf8
             go
             gopls
