@@ -3,6 +3,7 @@ base-url: https://ntfy.eleonora.gay
 
 # Listen address for the HTTP & HTTPS web server
 listen-http: ":8080"
+metrics-listen-http: ":9090"
 
 # If "cache-file" is set, messages are cached in a local SQLite database instead of only in-memory.
 cache-file: /var/cache/ntfy/cache.db

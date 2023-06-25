@@ -1,0 +1,44 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'system'
+    static_configs:
+      - targets: ['host.docker.internal:9100']
+
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['host.docker.internal:9323']
+
+  - job_name: 'caddy'
+    static_configs:
+      - targets: ['caddy:9090']
+
+  - job_name: 'headscale'
+    static_configs:
+      - targets: ['headscale:9090']
+
+  - job_name: 'ntfy'
+    static_configs:
+      - targets: ['ntfy:9090']
+
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+#   - job_name: 'redis'
+#     static_configs:
+#       - targets: ['redis:9090']
+
+#   - job_name: 'searxng'
+#     static_configs:
+#       - targets: ['searxng:9090']
+
+  - job_name: 'synapse'
+    static_configs:
+      - targets: ['synapse:9090']
+
+#   - job_name: 'wbo'
+#     static_configs:
+#       - targets: ['wbo:9090']

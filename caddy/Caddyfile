@@ -2,6 +2,8 @@
 	log {
 		format console
 	}
+
+	admin off
 }
 
 (default) {
@@ -39,6 +41,11 @@
 		format console
 		level ERROR
 	}
+}
+
+:9090 {
+	bind 0.0.0.0
+	metrics /metrics
 }
 
 eleonora.gay {
@@ -101,4 +108,11 @@ img.eleonora.gay {
 vpn.eleonora.gay {
 	import default
 	reverse_proxy headscale:8080
+}
+
+avh.eleonora.gay {
+	import default
+	respond * "This service is still under construction!" 404 {
+		close
+	}
 }
