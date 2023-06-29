@@ -18,3 +18,11 @@ derp:
     - https://controlplane.tailscale.com/derpmap/default
   auto_update_enabled: true
   update_frequency: 24h
+
+dns_config:
+  override_local_dns: true
+  magic_dns: true
+  base_domain: eleonora.gay
+
+  nameservers:
+    - 1.1.1.1
