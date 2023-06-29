@@ -11,3 +11,10 @@ db_path: /var/lib/headscale/db.sqlite
 
 ip_prefixes:
   - 100.64.0.0/10
+
+derp:
+  server:
+  urls:
+    - https://controlplane.tailscale.com/derpmap/default
+  auto_update_enabled: true
+  update_frequency: 24h
