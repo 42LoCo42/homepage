@@ -113,6 +113,18 @@ services:
       - ./headscale:/etc/headscale:ro
       - headscale_data:/var/lib/headscale:rw
 
+  tailscale:
+    image: tailscale/tailscale:v1.44.0
+    user: nobody:nogroup
+    restart: on-failure
+    cap_drop:
+      - ALL
+    environment:
+      TS_AUTHKEY:
+      TS_EXTRA_ARGS: "--login-server https://vpn.eleonora.gay --advertise-exit-node --hostname exit"
+    networks:
+      - tailscale
+
 volumes:
   caddy_data:
   caddy_config:
@@ -122,3 +134,6 @@ volumes:
   pigallery2_db:
   pigallery2_tmp:
   headscale_data:
+
+networks:
+  tailscale:

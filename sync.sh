@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 rsync \
 	-azvCP \
-	--filter=':- .gitignore' \
+	-f '+ /.env' \
+	-f ':- .gitignore' \
 	--delete \
 	./ \
-	bunny:INFRA/
+	bunny:INFRA/ \
+	"$@"
