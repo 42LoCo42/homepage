@@ -2,6 +2,7 @@ services:
   prometheus:
     image: prom/prometheus:v2.45.0
     user: nobody:nobody
+    restart: on-failure
     cap_drop:
       - ALL
     extra_hosts:
@@ -14,6 +15,7 @@ services:
   caddy:
     build: caddy
     user: nobody:nogroup
+    restart: on-failure
     cap_drop:
       - ALL
     cap_add:
@@ -35,6 +37,7 @@ services:
   searxng:
     build: searxng
     user: nobody:nogroup
+    restart: on-failure
     cap_drop:
       - ALL
     environment:
@@ -46,6 +49,7 @@ services:
   redis:
     image: redis:alpine
     user: nobody:nogroup
+    restart: on-failure
     cap_drop:
       - ALL
     command: redis-server --save "" --appendonly "no"
@@ -55,6 +59,7 @@ services:
   synapse:
     image: matrixdotorg/synapse:v1.85.2
     user: nobody:nogroup
+    restart: on-failure
     cap_drop:
       - ALL
     volumes:
@@ -63,6 +68,7 @@ services:
   wbo:
     build: wbo
     user: nobody:nogroup
+    restart: on-failure
     cap_drop:
       - ALL
     volumes:
@@ -71,6 +77,7 @@ services:
   ntfy:
     build: ntfy
     user: nobody:nogroup
+    restart: on-failure
     cap_drop:
       - ALL
     command:
@@ -82,6 +89,7 @@ services:
   pigallery2:
     build: pigallery2
     user: nobody:nogroup
+    restart: on-failure
     cap_drop:
       - ALL
     environment:
@@ -95,6 +103,7 @@ services:
   headscale:
     build: headscale
     user: nobody:nogroup
+    restart: on-failure
     cap_drop:
       - ALL
     command:
