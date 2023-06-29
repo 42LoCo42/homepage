@@ -1,0 +1,67 @@
+* Configuration for my server
+My corner of the Internet is accessible at https://eleonora.gay.
+All configurations for the server hosting it are contained in this repository.
+
+Services are managed with Docker Compose;
+the shell environment neccessary to build all components is created
+from a Nix Flake and is intended to be activated with Direnv.
+
+All services also run at minimum privileges:
+- as the ~nobody~ user
+- with all capabilities dropped
+
+** Caddy
+…is a modern web server with automatic certificate management and HTTP/3 support.
+It is used as the entrypoint and reverse proxy to all other services.
+
+*** Static content
+- My homepage: https://eleonora.gay
+- Element, a popular client for Matrix: https://element.eleonora.gay
+- A storage for random files: https://bags.eleonora.gay
+  (this currently stores ROS2 bagfiles for a university project)
+
+** SearXNG
+…is a privacy-respecting metasearch engine.
+Uses a Redis DB for caching and the ~SEARXNG_SECRET~ environment variable.
+It listens on https://searx.eleonora.gay
+
+** Synapse
+…is the reference implementation of a Matrix homeserver.
+It listens on https://matrix.eleonora.gay and on TCP port 8448 (for federation).
+
+** WBO
+…is a collaborative, real-time whiteboard service.
+It listens on https://wbo.eleonora.gay
+
+** ntfy
+…is a simple push notification service.
+It listens on https://ntfy.eleonora.gay
+
+** PiGallery2
+…is a simple and fast photo gallery.
+It listens on https://img.eleonora.gay
+
+** Headscale
+…is an open-source implementation of a Tailscale control server.
+It listens on https://vpn.eleonora.gay
+
+** Additional services
+These services are not connected to Caddy, either due to privacy reasons
+or simply because they aren't web services.
+
+*** Tailscale
+I run a Tailscale exit node to complete my personal VPN.
+This services needs the environment variable ~TS_AUTHKEY~.
+
+*** Prometheus
+…is a metrics collection tool.
+It currently collects metrics from the following services:
+- itself
+- a ~node_exporter~ instance running outside of Docker
+- Docker
+- Caddy
+- Synapse
+- ntfy
+- Headscale
+
+I plan to make a Grafana dashboard for all of these metrics soon.
