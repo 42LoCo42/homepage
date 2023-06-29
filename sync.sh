@@ -2,5 +2,6 @@
 rsync \
 	-azvCP \
 	--filter=':- .gitignore' \
+	--delete \
 	./ \
 	bunny:INFRA/
