@@ -41,6 +41,10 @@ It listens on https://ntfy.eleonora.gay
 …is a simple and fast photo gallery.
 It listens on https://img.eleonora.gay
 
+** AvH
+A private video host for my former classmates.
+Listens on https://avh.eleonora.gay and requires the AVH_JWT_KEY variable.
+
 ** Headscale
 …is an open-source implementation of a Tailscale control server.
 It listens on https://vpn.eleonora.gay

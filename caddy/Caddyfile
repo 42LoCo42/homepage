@@ -112,7 +112,5 @@ vpn.eleonora.gay {
 
 avh.eleonora.gay {
 	import default
-	respond * "This service is still under construction!" 404 {
-		close
-	}
+	reverse_proxy avh:8080
 }

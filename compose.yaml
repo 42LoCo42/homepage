@@ -128,6 +128,18 @@ services:
     volumes:
       - tailscale_data:/var/lib/tailscale
 
+  avh:
+    image: avh:hc238bq45661ybwrdl9gw0bz5r10ravc
+    user: 65534:65534
+    restart: on-failure
+    cap_drop:
+      - ALL
+    environment:
+      AVH_JWT_KEY:
+    volumes:
+      - $HOME/avh/users.db:/app/users.db
+      - $HOME/avh/videos:/app/srv/secure
+
 volumes:
   caddy_data:
   caddy_config:
