@@ -28,6 +28,7 @@
             go
             gopls
             homepage-builder
+            lazydocker
             rsync
             tree
           ];
