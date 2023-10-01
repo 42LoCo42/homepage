@@ -54,6 +54,10 @@ eleonora.gay {
 	file_server
 }
 
+www.eleonora.gay {
+	redir https://eleonora.gay
+}
+
 element.eleonora.gay {
 	import default
 	root * /srv/element
