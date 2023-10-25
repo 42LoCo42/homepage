@@ -1,16 +1,16 @@
 services:
-  prometheus:
-    image: prom/prometheus:v2.45.0
-    user: nobody:nobody
-    restart: on-failure
-    cap_drop:
-      - ALL
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus:/etc/prometheus:ro
+  # prometheus:
+  #   image: prom/prometheus:v2.45.0
+  #   user: nobody:nobody
+  #   restart: on-failure
+  #   cap_drop:
+  #     - ALL
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #   ports:
+  #     - "9090:9090"
+  #   volumes:
+  #     - ./prometheus:/etc/prometheus:ro
 
   caddy:
     build: caddy

@@ -28,19 +28,15 @@
       <x-neofetch>GitHub</x-neofetch>:
       <a href="https://github.com/42LoCo42/">Link</a><br>
 
-      <x-neofetch>OS</x-neofetch>: Arch Linux, NixOS<br>
-
-      <x-neofetch>Dotfiles</x-neofetch>:
-      <a href="https://github.com/42LoCo42/.dotfiles/tree/master">Arch</a>,
-      <a href="https://github.com/42LoCo42/.dotfiles/tree/nixos">NixOS</a><br>
+      <x-neofetch>OS</x-neofetch>: <a href="https://nixos.org">NixOS</a> (<a href="https://github.com/42LoCo42/.dotfiles/">Dotfiles</a>)<br>
 
       <x-neofetch>Languages</x-neofetch>:<br>
       <x-neosub>Human</x-neosub>: German (native), English (fluent)<br>
       <x-neosub>Systems</x-neosub>: C/C++, Go, Rust<br>
-      <x-neosub>Functional</x-neosub>: Haskell, Lisp<br>
+      <x-neosub>Functional</x-neosub>: Haskell, Lisp, Elixir<br>
       <x-neosub>JVM</x-neosub>: Java, Kotlin<br>
       <x-neosub>Scripting</x-neosub>: Bash, Python<br>
-      <x-neosub>Want to learn</x-neosub>: Elixir, OCaml, <a href="https://c9x.me/compile/">QBE</a><br>
+      <x-neosub>Want to learn</x-neosub>: OCaml, <a href="https://c9x.me/compile/">QBE</a><br>
       <x-neofetch>Trans rights are</x-neofetch>: Human rights<br>
 
       <br>
