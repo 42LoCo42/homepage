@@ -1,6 +1,7 @@
 {
 	log {
 		format console
+		level ERROR
 	}
 
 	admin off
@@ -91,7 +92,7 @@ matrix.eleonora.gay {
 # matrix federation
 eleonora.gay:8448 {
 	import default
-	reverse_proxy synapse:8008
+	reverse_proxy /_matrix/* synapse:8008
 }
 
 wbo.eleonora.gay {

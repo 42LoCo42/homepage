@@ -57,7 +57,7 @@ services:
       - /var/lib/redis
 
   synapse:
-    image: matrixdotorg/synapse:v1.85.2
+    image: matrixdotorg/synapse:v1.95.0
     user: nobody:nogroup
     restart: on-failure
     cap_drop:
