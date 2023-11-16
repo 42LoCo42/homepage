@@ -119,3 +119,8 @@ avh.eleonora.gay {
 	import default
 	reverse_proxy avh:8080
 }
+
+chisel.eleonora.gay {
+	import default
+	reverse_proxy host.docker.internal:12345
+}
