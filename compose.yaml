@@ -20,8 +20,6 @@ services:
       - ALL
     cap_add:
       - NET_BIND_SERVICE
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     ports:
       - "80:80"
       - "443:443"
@@ -141,6 +139,18 @@ services:
     volumes:
       - $HOME/avh/users.db:/app/users.db
       - $HOME/avh/videos:/app/srv/secure
+
+  chisel:
+    image: jpillora/chisel:1.9.1
+    user: 65534:65534
+    restart: always
+    cap_drop:
+      - ALL
+    command:
+      - server
+      - --reverse
+      - --auth
+      - "$CHISEL_AUTH"
 
 volumes:
   caddy_data:

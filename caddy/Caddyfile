@@ -122,5 +122,5 @@ avh.eleonora.gay {
 
 chisel.eleonora.gay {
 	import default
-	reverse_proxy host.docker.internal:12345
+	reverse_proxy chisel:8080
 }
