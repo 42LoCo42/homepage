@@ -32,7 +32,6 @@ services:
       - ./homepage/out:/srv/homepage:ro
       - $HOME/hidden:/srv/homepage/foo:ro
       - ./element/out:/srv/element:ro
-      - $HOME/bags:/srv/bags:ro
 
   searxng:
     build: searxng

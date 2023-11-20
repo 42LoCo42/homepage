@@ -65,12 +65,6 @@ element.eleonora.gay {
 	file_server
 }
 
-bags.eleonora.gay {
-	import default
-	root * /srv/bags
-	file_server browse
-}
-
 searx.eleonora.gay {
 	import default
 	reverse_proxy searxng:8080 {

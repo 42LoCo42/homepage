@@ -17,8 +17,6 @@ It is used as the entrypoint and reverse proxy to all other services.
 *** Static content
 - My homepage: https://eleonora.gay
 - Element, a popular client for Matrix: https://element.eleonora.gay
-- A storage for random files: https://bags.eleonora.gay
-  (this currently stores ROS2 bagfiles for a university project)
 
 ** SearXNG
 …is a privacy-respecting metasearch engine.
