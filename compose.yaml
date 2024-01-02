@@ -151,6 +151,17 @@ services:
       - --auth
       - "$CHISEL_AUTH"
 
+  remo:
+    image: remo:latest
+    user: 65534:65534
+    restart: always
+    cap_drop:
+      - ALL
+    environment:
+      REMO_TOKEN_KEY:
+    volumes:
+      - $HOME/remo.yaml:/users.yaml
+
 volumes:
   caddy_data:
   caddy_config:
