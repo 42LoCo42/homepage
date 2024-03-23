@@ -1,3 +1,12 @@
+* !! ACHTUNG !! Moved to https://github.com/42LoCo42/.dotfiles
+I recently migrated my server ~bunny~ from its default Ubuntu installation (bleh)
+to the very awesome NixOS, with all the configs being located in my [[https://github.com/42LoCo42/.dotfiles/blob/nixos/machines/bunny/default.nix][dotfile repo]].
+It also contains the [[https://github.com/42LoCo42/.dotfiles/tree/nixos/homepage][source code]] for my actual [[https://eleonora.gay/][homepage]].
+
+This repo won't be updated anymore, but will be kept as an archive.
+
+-----
+
 * Configuration for my server
 My corner of the Internet is accessible at https://eleonora.gay.
 All configurations for the server hosting it are contained in this repository.
